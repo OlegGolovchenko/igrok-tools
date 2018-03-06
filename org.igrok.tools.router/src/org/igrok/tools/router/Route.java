@@ -3,6 +3,8 @@
  */
 package org.igrok.tools.router;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Objects;
 
@@ -57,6 +59,29 @@ public class Route {
 	 */
 	public void setStatic(boolean isStatic) {
 		this.isStatic = isStatic;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws RouterException
+	 */
+	public RouteResult executeAction() throws RouterException {
+		Class<?> cls = this.actionMethod.getDeclaringClass();
+		if(cls.getConstructors().length>1) {
+			throw new RouterException("Multiple constructors declared for controller.");
+		}
+		try {
+			Object controller = cls.getConstructors()[0].newInstance();
+			Object result = this.actionMethod.invoke(controller);
+			if(!(result instanceof RouteResult)) {
+				throw new RouterException("Action method result must be of RouteResult type");
+			}
+			return (RouteResult)result;
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| SecurityException e) {
+			throw new RouterException(e.getLocalizedMessage());
+		}
 	}
 
 	/*
