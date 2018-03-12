@@ -7,14 +7,14 @@ package org.igrok.tools.services;
  * @author oleg
  *
  */
-public class IgService {
-	private Object instance;
+public abstract class IgService {
+	protected Class<?> type;
 	/**
 	 * 
 	 */
-	public IgService(Object instance) {
-		this.instance = instance;
+	public IgService(Class<?> type) {
+		this.type = type;
 	}
-
 	
+	public abstract Object getInstance();
 }
