@@ -17,4 +17,8 @@ public abstract class IgService {
 	}
 	
 	public abstract Object getInstance();
+	
+	public Class<?> getType(){
+		return this.type;
+	}
 }
