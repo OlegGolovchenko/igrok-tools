@@ -51,4 +51,6 @@ public class IgSingletonServiceTests {
 		IgSingletonService service  = new IgSingletonService(Object.class, object);
 		assertEquals(service.getInstance(),object);
 	}
+	
+	
 }
