@@ -13,6 +13,9 @@ public abstract class IgService {
 	 * 
 	 */
 	public IgService(Class<?> type) {
+		if(type == null) {
+			throw new IllegalArgumentException("Type can mot be null");
+		}
 		this.type = type;
 	}
 	

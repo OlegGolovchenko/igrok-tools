@@ -3,6 +3,7 @@
  */
 package org.igrok.tools.services;
 
+import java.io.InvalidObjectException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -23,11 +24,11 @@ public class ServiceCollection {
 		services = new ArrayList<IgService>();
 	}
 
-	public void addSingleton(Class<?> type, Object instance) {
+	public void addSingleton(Class<?> type, Object instance) throws InvalidObjectException {
 		this.services.add(new IgSingletonService(type, instance));
 	}
 
-	public void addSingletonWithServices(Class<?> type, int constructorId) {
+	public void addSingletonWithServices(Class<?> type, int constructorId) throws InvalidObjectException {
 		Constructor<?> ctr = type.getConstructors()[constructorId];
 		Class<?>[] paramTypes = ctr.getParameterTypes();
 		Object[] params = new Object[paramTypes.length];
