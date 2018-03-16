@@ -2,6 +2,7 @@
  * 
  */
 package org.igrok.tools.tests;
+import org.junit.Test;
 
 /**
  * @author oleg
@@ -9,4 +10,8 @@ package org.igrok.tools.tests;
  */
 public class IgServiceTests {
 	
+	@Test
+	public void GetTypeTest() {
+		
+	}
 }
