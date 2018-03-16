@@ -2,6 +2,6 @@ language: java
 jdk:
   - oraclejdk9
 
-before_script: cd org/igrok/tools/tests
+before_script: cd org.igrok.tools.tests
 
 script: ant build
