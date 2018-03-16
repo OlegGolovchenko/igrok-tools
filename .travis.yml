@@ -6,4 +6,4 @@ before_script: cd org.igrok.tools.tests
 
 script: ant build
 
-script: ant org.igrok.tests
+script: ant org.igrok.tools.tests
