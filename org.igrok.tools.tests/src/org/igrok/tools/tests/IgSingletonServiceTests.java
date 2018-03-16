@@ -46,7 +46,7 @@ public class IgSingletonServiceTests {
 	}
 	
 	@Test
-	public void GetObjectShouldReturnGivenInstance() throws InvalidObjectException {
+	public void GetInstanceShouldReturnGivenInstance() throws InvalidObjectException {
 		Object object = new Object();
 		IgSingletonService service  = new IgSingletonService(Object.class, object);
 		assertEquals(service.getInstance(),object);
