@@ -16,24 +16,24 @@ import org.junit.Test;
  */
 public class IgInstanceServiceTests {
 	@Test(expected = IllegalArgumentException.class)
-	public void ConstructorShouldThrowIllegalArgumentExceptionWhenTypeIsNull() throws InvalidObjectException {
+	public void constructorShouldThrowIllegalArgumentExceptionWhenTypeIsNull() throws InvalidObjectException {
 		new IgInstanceService(null);
 	}
 	
 	@Test
-	public void ConstructorShouldSucceeedWhenCorrectArgumentsGiven() throws InvalidObjectException {
+	public void constructorShouldSucceeedWhenCorrectArgumentsGiven() throws InvalidObjectException {
 		IgInstanceService service = new IgInstanceService(Object.class); 
 		assertNotNull(service);
 	}
 	
 	@Test
-	public void GetTypeShouldSucceedWhenTypeIsNotNull() throws InvalidObjectException {
+	public void getTypeShouldSucceedWhenTypeIsNotNull() throws InvalidObjectException {
 		IgInstanceService service  = new IgInstanceService(Object.class);
 		assertEquals(service.getType(),Object.class);
 	}
 	
 	@Test
-	public void GetInstanceShouldReturnGivenInstance() throws InvalidObjectException {
+	public void getInstanceShouldReturnGivenInstance() throws InvalidObjectException {
 		IgInstanceService service  = new IgInstanceService(Object.class);
 		assertNotNull(service.getClass());
 	}

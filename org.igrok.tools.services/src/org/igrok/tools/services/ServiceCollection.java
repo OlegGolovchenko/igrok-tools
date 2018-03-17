@@ -28,7 +28,7 @@ public class ServiceCollection {
 		this.services.add(new IgSingletonService(type, instance));
 	}
 
-	public void addSingletonWithServices(Class<?> type, int constructorId) throws InvalidObjectException {
+	public void addSingletonWithServices(Class<?> type, int constructorId) throws InvalidObjectException, ServiceNotFoundException {
 		Constructor<?> ctr = type.getConstructors()[constructorId];
 		Class<?>[] paramTypes = ctr.getParameterTypes();
 		Object[] params = new Object[paramTypes.length];
@@ -37,6 +37,9 @@ public class ServiceCollection {
 				if (service.getType() == paramTypes[i]) {
 					params[i] = service.getInstance();
 				}
+			}
+			if(params[i]==null) {
+				throw new ServiceNotFoundException("Service "+paramTypes[i]+" not found");
 			}
 		}
 		try {

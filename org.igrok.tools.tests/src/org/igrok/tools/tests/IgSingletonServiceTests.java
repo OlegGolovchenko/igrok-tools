@@ -15,38 +15,38 @@ import org.igrok.tools.services.IgSingletonService;
  * @author oleg
  *
  */
-public class IgSingletonServiceTests {
+class IgSingletonServiceTests {
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void ConstructorShouldThrowIllegalArgumentExceptionWhenTypeIsNull() throws InvalidObjectException {
+	public void constructorShouldThrowIllegalArgumentExceptionWhenTypeIsNull() throws InvalidObjectException {
 		new IgSingletonService(null,new Object());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void ConstructorShouldThrowIllegalArgumentExceptionWhenInstanceIsNull() throws InvalidObjectException {
+	public void constructorShouldThrowIllegalArgumentExceptionWhenInstanceIsNull() throws InvalidObjectException {
 		new IgSingletonService(Object.class,null);
 	}
 	
 	@Test(expected = InvalidObjectException.class)
-	public void ConstructorShouldThrowInvalidObjectTypeExceptionWhenInstanceIsNotOfGivenType() throws InvalidObjectException {
+	public void constructorShouldThrowInvalidObjectTypeExceptionWhenInstanceIsNotOfGivenType() throws InvalidObjectException {
 		new IgSingletonService(Socket.class,new Object());
 	}
 	
 	@Test
-	public void ConstructorShouldSucceeedWhenCorrectArgumentsGiven() throws InvalidObjectException {
+	public void constructorShouldSucceeedWhenCorrectArgumentsGiven() throws InvalidObjectException {
 		IgSingletonService service = new IgSingletonService(Object.class,new Object()); 
 		assertNotNull(service);
 	}
 	
 	@Test
-	public void GetTypeShouldSucceedWhenTypeIsNotNull() throws InvalidObjectException {
+	public void getTypeShouldSucceedWhenTypeIsNotNull() throws InvalidObjectException {
 		Object object = new Object();
 		IgSingletonService service  = new IgSingletonService(Object.class, object);
 		assertEquals(service.getType(),Object.class);
 	}
 	
 	@Test
-	public void GetInstanceShouldReturnGivenInstance() throws InvalidObjectException {
+	public void getInstanceShouldReturnGivenInstance() throws InvalidObjectException {
 		Object object = new Object();
 		IgSingletonService service  = new IgSingletonService(Object.class, object);
 		assertEquals(service.getInstance(),object);
