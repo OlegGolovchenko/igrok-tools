@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 class IgInstanceService extends IgService {
 
-	private Object params;
+	private Object[] params;
 
 	/**
 	 * @param type

@@ -63,18 +63,25 @@ public class ServiceCollectionTests {
 		collection.addSingletonWithServices(TestClass.class, 0);
 	}
 
-	/*
+	
 	@Test
-	public void testAddInstance() {
-		fail("Not yet implemented");
+	public void addInstanceShouldSucceed() {
+		ServiceCollection collection = new ServiceCollection();
+		collection.addInstance(Object.class);
 	}
-	*/
 
-	/*
-	@Test
-	public void testAddInstanceWithServices() {
-		fail("Not yet implemented");
+	@Test(expected = ServiceNotFoundException.class)
+	public void addInstanceWithServicesShouldThrowServiceNotFoundExceptionWhenNeededServiceIsNotPresent() throws InvalidObjectException, ServiceNotFoundException {
+		ServiceCollection collection = new ServiceCollection();
+		collection.addInstanceWithServices(TestClass.class, 0);
 	}
-	*/
+	
+	
+	@Test
+	public void addInstanceWithServicesShouldSucceed() throws InvalidObjectException, ServiceNotFoundException {
+		ServiceCollection collection = new ServiceCollection();
+		collection.addInstance(TestClass2.class);
+		collection.addInstanceWithServices(TestClass.class, 0);
+	}
 
 }
