@@ -3,15 +3,16 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="org.igrok.tools.services">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="org.igrok.tools.configuration">
     <property environment="env"/>
     <property name="org.igrok.tools.tests.location" value="../org.igrok.tools.tests"/>
     <property name="ECLIPSE_HOME" value="../../../eclipse/java-latest-released/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="9"/>
     <property name="source" value="9"/>
-    <path id="org.igrok.tools.services.classpath">
+    <path id="org.igrok.tools.configuration.classpath">
         <pathelement location="bin"/>
+        <pathelement location="lib/json-simple-1.1.1.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -31,7 +32,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="org.igrok.tools.services.classpath"/>
+            <classpath refid="org.igrok.tools.configuration.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
