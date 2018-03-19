@@ -3,21 +3,17 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="org.igrok.tools.services">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="org.igrok.tools.configuration">
     <property environment="env"/>
+    <property name="org.igrok.tools.services.location" value="../org.igrok.tools.services"/>
     <property name="org.igrok.tools.tests.location" value="../org.igrok.tools.tests"/>
     <property name="ECLIPSE_HOME" value="../../../eclipse/java-latest-released/eclipse/"/>
-    <property name="org.igrok.tools.configuration.location" value="../org.igrok.tools.configuration"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="9"/>
     <property name="source" value="9"/>
     <path id="org.igrok.tools.configuration.classpath">
-        <pathelement location="${org.igrok.tools.configuration.location}/bin"/>
-        <pathelement location="${org.igrok.tools.configuration.location}/json-simple-1.1.1.jar"/>
-    </path>
-    <path id="org.igrok.tools.services.classpath">
         <pathelement location="bin"/>
-        <path refid="org.igrok.tools.configuration.classpath"/>
+        <pathelement location="json-simple-1.1.1.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -32,25 +28,23 @@
     <target name="clean">
         <delete dir="bin"/>
     </target>
-    <target depends="clean" name="cleanall">
-        <ant antfile="build.xml" dir="${org.igrok.tools.configuration.location}" inheritAll="false" target="clean"/>
-    </target>
+    <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects">
-        <ant antfile="build.xml" dir="${org.igrok.tools.configuration.location}" inheritAll="false" target="build-project">
-            <propertyset>
-                <propertyref name="build.compiler"/>
-            </propertyset>
-        </ant>
-    </target>
+    <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <modulepath refid="org.igrok.tools.services.classpath"/>
+            <modulepath refid="org.igrok.tools.configuration.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+        <ant antfile="build.xml" dir="${org.igrok.tools.services.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${org.igrok.tools.services.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
         <ant antfile="build.xml" dir="${org.igrok.tools.tests.location}" inheritAll="false" target="clean"/>
         <ant antfile="build.xml" dir="${org.igrok.tools.tests.location}" inheritAll="false" target="build">
             <propertyset>
