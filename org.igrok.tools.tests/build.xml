@@ -12,12 +12,13 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="9"/>
     <property name="source" value="9"/>
-    <path id="org.igrok.tools.services.classpath">
-        <pathelement location="${org.igrok.tools.services.location}/bin"/>
-    </path>
     <path id="org.igrok.tools.configuration.classpath">
         <pathelement location="${org.igrok.tools.configuration.location}/bin"/>
         <pathelement location="${org.igrok.tools.configuration.location}/json-simple-1.1.1.jar"/>
+    </path>
+    <path id="org.igrok.tools.services.classpath">
+        <pathelement location="${org.igrok.tools.services.location}/bin"/>
+        <path refid="org.igrok.tools.configuration.classpath"/>
     </path>
     <path id="org.igrok.tools.tests.classpath">
         <pathelement location="bin"/>
