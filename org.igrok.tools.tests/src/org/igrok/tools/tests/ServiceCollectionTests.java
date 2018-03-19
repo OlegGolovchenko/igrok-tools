@@ -63,20 +63,18 @@ public class ServiceCollectionTests {
 		collection.addSingletonWithServices(TestClass.class, 0);
 	}
 
-	/**
-	 * Test method for {@link org.igrok.tools.services.ServiceCollection#addInstance(java.lang.Class, java.lang.Object[])}.
-	 */
+	/*
 	@Test
 	public void testAddInstance() {
 		fail("Not yet implemented");
 	}
+	*/
 
-	/**
-	 * Test method for {@link org.igrok.tools.services.ServiceCollection#addInstanceWithServices(java.lang.Class, int)}.
-	 */
+	/*
 	@Test
 	public void testAddInstanceWithServices() {
 		fail("Not yet implemented");
 	}
+	*/
 
 }
