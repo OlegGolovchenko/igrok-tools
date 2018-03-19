@@ -9,7 +9,7 @@ import java.io.InvalidObjectException;
  * @author oleg
  *
  */
-public class IgSingletonService extends IgService {
+class IgSingletonService extends IgService {
 
 	private Object instance;
 	
