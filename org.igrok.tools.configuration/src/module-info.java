@@ -6,6 +6,6 @@
  *
  */
 module org.igrok.tools.configuration {
-	requires json.simple;
+	requires transitive json.simple;
 	exports org.igrok.tools.configuration;
 }

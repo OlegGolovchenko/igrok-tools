@@ -26,6 +26,7 @@ public class ConfigurationCollection {
 	 * 
 	 */
 	public ConfigurationCollection() {
+		this.configuration = new JSONObject();
 	}
 
 	/**
@@ -50,7 +51,10 @@ public class ConfigurationCollection {
 		}
 		JSONParser parser = new JSONParser();
 		Object dataObject = parser.parse(jsonString);
-		this.configuration = (JSONObject) dataObject;
+		JSONObject object = (JSONObject)dataObject;
+		object.forEach((key,value)->{
+			this.configuration.put(key, value);
+		});
 	}
 
 }
