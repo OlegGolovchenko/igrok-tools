@@ -1,6 +1,7 @@
 <project name="org.igrok.tools.tests" default="build" basedir=".">
 
 	<target name="build_configuration">
+		<mkdir dir="bin"/>
 		<javac srcdir="..${file.separator}org.igrok.tools.configuration${file.separator}src" 
 	         includeantruntime="false" modulepath="lib" destdir="bin" source="9" target="9">
 		</javac>
