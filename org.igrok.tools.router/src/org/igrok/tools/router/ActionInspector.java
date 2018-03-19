@@ -5,6 +5,10 @@ package org.igrok.tools.router;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Parameter;
+
+import org.igrok.tools.services.ServiceCollection;
+import org.igrok.tools.services.ServiceNotFoundException;
 
 /**
  * @author oleg
@@ -12,8 +16,10 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class ActionInspector {
 
-	public static Object ConstructController(Constructor<?> constructor) throws RouterException {
-		Class<?>[] params = constructor.getParameterTypes();
+	public static Object ConstructController(Constructor<?> constructor, ServiceCollection services)
+			throws RouterException, InstantiationException, IllegalAccessException, IllegalArgumentException,
+			InvocationTargetException, ServiceNotFoundException {
+		Parameter[] params = constructor.getParameters();
 		if (params.length == 0) {
 			try {
 				return constructor.newInstance();
@@ -22,7 +28,7 @@ public class ActionInspector {
 				throw new RouterException(e.getLocalizedMessage());
 			}
 		} else {
-			
+			return constructor.newInstance(services.fillParams(params));
 		}
 	}
 

@@ -13,6 +13,18 @@
 		</javac>
 	</target>
 
+	<target name="build_protocols">
+		<javac srcdir="..${file.separator}org.igrok.tools.protocols${file.separator}src" 
+			         includeantruntime="false" modulepath="lib${path.separator}bin" destdir="bin" source="9" target="9">
+		</javac>
+	</target>
+
+	<target name="build_router">
+		<javac srcdir="..${file.separator}org.igrok.tools.router${file.separator}src" 
+					         includeantruntime="false" modulepath="lib${path.separator}bin" destdir="bin" source="9" target="9">
+		</javac>
+	</target>
+
 	<target name="verifyNoError" if="test.error">
 		<fail message="JUnit test or tests errors."/>
 	</target>
