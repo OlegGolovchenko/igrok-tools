@@ -11,6 +11,11 @@ package org.igrok.tools.services;
 public class ServiceNotFoundException extends Exception {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9105991034683890605L;
+
+	/**
 	 * Creates exception with given message
 	 * @param message message to hold
 	 */

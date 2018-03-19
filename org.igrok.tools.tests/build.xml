@@ -17,7 +17,7 @@
     </path>
     <path id="org.igrok.tools.configuration.classpath">
         <pathelement location="${org.igrok.tools.configuration.location}/bin"/>
-        <pathelement location="${org.igrok.tools.configuration.location}/lib/json-simple-1.1.1.jar"/>
+        <pathelement location="${org.igrok.tools.configuration.location}/json-simple-1.1.1.jar"/>
     </path>
     <path id="org.igrok.tools.tests.classpath">
         <pathelement location="bin"/>

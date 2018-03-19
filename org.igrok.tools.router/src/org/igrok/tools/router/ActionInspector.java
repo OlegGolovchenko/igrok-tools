@@ -12,7 +12,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class ActionInspector {
 
-	public static Object ConstructController(Constructor constructor) throws RouterException {
+	public static Object ConstructController(Constructor<?> constructor) throws RouterException {
 		Class<?>[] params = constructor.getParameterTypes();
 		if (params.length == 0) {
 			try {

@@ -30,8 +30,7 @@ public class ConfigurationCollection {
 	}
 
 	/**
-	 * Loads and replaces configuration values from json file
-	 * 
+	 * Loads configuration values from json file
 	 * @param path
 	 * @throws IOException
 	 * @throws ParseException
@@ -56,5 +55,21 @@ public class ConfigurationCollection {
 			this.configuration.put(key, value);
 		});
 	}
-
+	
+	/**
+	 * Adds all values from environmental variables
+	 */
+	public void addEnvironment() {
+		System.getProperties().forEach((key, value)->{
+			this.configuration.put(key, value);
+		});
+	}
+	
+	/**
+	 * Gets given configuration value
+	 * @param key name of configuration variable
+	 */
+	public void getValue(String key) {
+		this.configuration.getOrDefault(key, null);
+	}
 }

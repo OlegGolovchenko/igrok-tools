@@ -17,5 +17,9 @@ public class TestClass {
 	public TestClass(TestClass2 tc2) {
 		this.tc2 = tc2;
 	}
+	
+	public void useTc2() {
+		this.tc2.use();
+	}
 
 }
