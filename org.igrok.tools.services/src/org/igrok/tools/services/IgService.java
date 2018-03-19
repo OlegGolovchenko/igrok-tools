@@ -7,7 +7,7 @@ package org.igrok.tools.services;
  * @author oleg
  *
  */
-public abstract class IgService {
+abstract class IgService {
 	protected Class<?> type;
 	/**
 	 * 

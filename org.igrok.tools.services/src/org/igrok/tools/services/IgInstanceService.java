@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
  * @author oleg
  *
  */
-public class IgInstanceService extends IgService {
+class IgInstanceService extends IgService {
 
 	private Object params;
 
