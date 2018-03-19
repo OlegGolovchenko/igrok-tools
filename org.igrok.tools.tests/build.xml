@@ -35,6 +35,7 @@
 			</classpath>
 			<formatter type="plain"/>
 			<test name="org.igrok.tools.tests.ServiceCollectionTests"/>
+			<test name="org.igrok.tools.tests.ConfigurationCollectionTests"/>
 		</junit>
 	</target>
 

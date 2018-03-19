@@ -72,4 +72,12 @@ public class ConfigurationCollection {
 	public Object getValue(String key) {
 		return this.configuration.getOrDefault(key, null);
 	}
+	
+	/**
+	 * Checks if ConfigurationCollection is empty
+	 * @return true if empty false otherwise
+	 */
+	public boolean isEmpty() {
+		return this.configuration.isEmpty();
+	}
 }
