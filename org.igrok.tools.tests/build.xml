@@ -70,7 +70,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="org.igrok.tools.tests.classpath"/>
+            <modulepath refid="org.igrok.tools.tests.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -93,7 +93,7 @@
             <formatter type="xml"/>
             <test name="org.igrok.tools.tests.ServiceCollectionTests" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
-            <classpath refid="run.org.igrok.tools.tests.classpath"/>
+            <modulepath refid="run.org.igrok.tools.tests.classpath"/>
         </junit>
     </target>
     <target name="junitreport">
