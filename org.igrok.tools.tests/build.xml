@@ -13,13 +13,13 @@
 		</javac>
 	</target>
 
-	<target name="build_protocols">
+	<target name="build_protocols" depends="build_services">
 		<javac srcdir="..${file.separator}org.igrok.tools.protocols${file.separator}src" 
 			         includeantruntime="false" modulepath="lib${path.separator}bin" destdir="bin" source="9" target="9">
 		</javac>
 	</target>
 
-	<target name="build_router">
+	<target name="build_router" depends="build_protocols">
 		<javac srcdir="..${file.separator}org.igrok.tools.router${file.separator}src" 
 					         includeantruntime="false" modulepath="lib${path.separator}bin" destdir="bin" source="9" target="9">
 		</javac>
@@ -33,7 +33,7 @@
 		<fail message="JUnit test or tests failed."/>
 	</target>
 
-	<target name="build_and_test" depends="build_services">
+	<target name="build_and_test" depends="build_router">
 		<javac srcdir="src" modulepath="lib${path.separator}bin" 
 	         includeantruntime="false" destdir="bin" source="9" target="9">
 		</javac>
