@@ -41,6 +41,19 @@ public class ConfigurationCollectionTests {
 	}
 	
 	
+	@Test(expected = ParseException.class)
+	public void loadFromFileShouldThrowParseExceptionIfJsonFormatError() throws IOException, ParseException{
+		ConfigurationCollection collection = new ConfigurationCollection();
+		collection.loadFromFile("test_error.json");
+	}
+	
+	@Test
+	public void loadFromFileShouldSucceed() throws IOException, ParseException{
+		ConfigurationCollection collection = new ConfigurationCollection();
+		collection.loadFromFile("test.json");
+		assertFalse(collection.isEmpty());
+	}
+	
 	@Test
 	public void addEnvironmentShouldFillCollection() {
 		ConfigurationCollection collection = new ConfigurationCollection();
@@ -62,10 +75,4 @@ public class ConfigurationCollectionTests {
 		collection.addEnvironment();
 		assertNotNull(collection.getValue("os.name"));
 	}
-	
-	@Test
-	public void testIsEmpty() {
-		
-	}
-
 }
