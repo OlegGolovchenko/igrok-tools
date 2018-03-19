@@ -80,4 +80,20 @@ public class ConfigurationCollection {
 	public boolean isEmpty() {
 		return this.configuration.isEmpty();
 	}
+	
+	/**
+	 * gets size of given configurationcollection
+	 * @return size of this collection
+	 */
+	public int getSize() {
+		return this.configuration.size();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.configuration.toString();
+	}
 }
