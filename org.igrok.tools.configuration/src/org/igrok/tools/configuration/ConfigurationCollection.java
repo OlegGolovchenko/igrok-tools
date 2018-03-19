@@ -15,6 +15,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
+ * Configuration properties collection and manager
  * @author Oleg Golovchenko
  * @version 0.0.1
  */
@@ -71,5 +72,38 @@ public class ConfigurationCollection {
 	 */
 	public Object getValue(String key) {
 		return this.configuration.getOrDefault(key, null);
+	}
+	
+	/**
+	 * Adds or replaces value if exists
+	 * @param key key to add or replace value
+	 * @param value value to set for key
+	 */
+	public void addOrReplaceProperty(Object key, Object value) {
+		this.configuration.put(key, value);
+	}
+	
+	/**
+	 * Checks if ConfigurationCollection is empty
+	 * @return true if empty false otherwise
+	 */
+	public boolean isEmpty() {
+		return this.configuration.isEmpty();
+	}
+	
+	/**
+	 * gets size of given configurationcollection
+	 * @return size of this collection
+	 */
+	public int getSize() {
+		return this.configuration.size();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.configuration.toString();
 	}
 }

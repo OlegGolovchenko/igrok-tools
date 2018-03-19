@@ -88,4 +88,29 @@ public class ServiceCollection {
 		}
 		this.addInstance(type, params);
 	}
+	
+	/**
+	 * returns filles array with parameters for requested arguments
+	 * @param paramsCtr arguments got from constructor
+	 * @return array of parameters
+	 * @throws ServiceNotFoundException if service not present
+	 */
+	public Object[] fillParams(Parameter[]paramsCtr) throws ServiceNotFoundException {
+		Object[] params = new Object[paramsCtr.length];
+		for (int i = 0; i < paramsCtr.length; i++) {
+			for (IgService service : this.services) {
+				if (service.getType() == paramsCtr[i].getType()) {
+					params[i] = service.getInstance();
+					if (params[i] == null) {
+						params[i] = this.configuration.getValue(paramsCtr[i].getName());
+					}
+				}
+			}
+			if (params[i] == null) {
+				throw new ServiceNotFoundException("Service for parameter " + paramsCtr[i].getName() + " of type "
+						+ paramsCtr[i].getType() + " not found");
+			}
+		}
+		return params;
+	}
 }

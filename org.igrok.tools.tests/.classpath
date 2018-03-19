@@ -21,12 +21,22 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.igrok.tools.configuration">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.igrok.tools.services">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.igrok.tools.configuration">
+	<classpathentry combineaccessrules="false" kind="src" path="/org.igrok.tools.protocols">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.igrok.tools.router">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
