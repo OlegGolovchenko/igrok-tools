@@ -6,6 +6,6 @@
  *
  */
 module org.igrok.tools.services {
-	requires org.igrok.tools.configuration;
+	requires transitive org.igrok.tools.configuration;
 	exports org.igrok.tools.services;
 }

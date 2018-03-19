@@ -7,34 +7,29 @@
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../../eclipse/java-latest-released/eclipse/"/>
     <property name="junit.output.dir" value="junit"/>
-    <property name="org.igrok.tools.configuration.location" value="../org.igrok.tools.configuration"/>
     <property name="org.igrok.tools.services.location" value="../org.igrok.tools.services"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="9"/>
     <property name="source" value="9"/>
-    <path id="org.igrok.tools.configuration.classpath">
-        <pathelement location="${org.igrok.tools.configuration.location}/bin"/>
-        <pathelement location="${org.igrok.tools.configuration.location}/json-simple-1.1.1.jar"/>
-    </path>
     <path id="org.igrok.tools.services.classpath">
         <pathelement location="${org.igrok.tools.services.location}/bin"/>
-        <path refid="org.igrok.tools.configuration.classpath"/>
+        <pathelement location="${org.igrok.tools.services.location}/igrok-tools-configuration-0.0.1.jar"/>
     </path>
     <path id="org.igrok.tools.tests.classpath">
         <pathelement location="bin"/>
-        <pathelement location="lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="lib/junit-4.12.jar"/>
-        <pathelement location="lib/json-simple-1.1.1.jar"/>
         <path refid="org.igrok.tools.services.classpath"/>
-        <path refid="org.igrok.tools.configuration.classpath"/>
+        <pathelement location="lib/hamcrest-core-1.3.jar"/>
+        <pathelement location="lib/igrok-tools-configuration-0.0.1.jar"/>
+        <pathelement location="lib/json-simple-1.1.1.jar"/>
+        <pathelement location="lib/junit-4.12.jar"/>
     </path>
     <path id="run.org.igrok.tools.tests.classpath">
         <path refid="org.igrok.tools.tests.classpath"/>
-        <pathelement location="lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="lib/junit-4.12.jar"/>
-        <pathelement location="lib/json-simple-1.1.1.jar"/>
         <path refid="org.igrok.tools.services.classpath"/>
-        <path refid="org.igrok.tools.configuration.classpath"/>
+        <pathelement location="lib/hamcrest-core-1.3.jar"/>
+        <pathelement location="lib/igrok-tools-configuration-0.0.1.jar"/>
+        <pathelement location="lib/json-simple-1.1.1.jar"/>
+        <pathelement location="lib/junit-4.12.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -50,16 +45,10 @@
         <delete dir="bin"/>
     </target>
     <target depends="clean" name="cleanall">
-        <ant antfile="build.xml" dir="${org.igrok.tools.configuration.location}" inheritAll="false" target="clean"/>
         <ant antfile="build.xml" dir="${org.igrok.tools.services.location}" inheritAll="false" target="clean"/>
     </target>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects">
-        <ant antfile="build.xml" dir="${org.igrok.tools.configuration.location}" inheritAll="false" target="build-project">
-            <propertyset>
-                <propertyref name="build.compiler"/>
-            </propertyset>
-        </ant>
         <ant antfile="build.xml" dir="${org.igrok.tools.services.location}" inheritAll="false" target="build-project">
             <propertyset>
                 <propertyref name="build.compiler"/>
@@ -91,8 +80,6 @@
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="org.igrok.tools.tests.IgInstanceServiceTests" todir="${junit.output.dir}"/>
-            <test name="org.igrok.tools.tests.IgSingletonServiceTests" todir="${junit.output.dir}"/>
             <test name="org.igrok.tools.tests.ServiceCollectionTests" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
             <classpath refid="run.org.igrok.tools.tests.classpath"/>

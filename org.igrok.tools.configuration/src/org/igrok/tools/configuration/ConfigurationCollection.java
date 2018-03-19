@@ -15,15 +15,15 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
- * @author oleg
- *
+ * @author Oleg Golovchenko
+ * @version 0.0.1
  */
 public class ConfigurationCollection {
 
 	private JSONObject configuration;
 
 	/**
-	 * 
+	 * Constructs new instacne of ConfigurationCollection
 	 */
 	public ConfigurationCollection() {
 		this.configuration = new JSONObject();
@@ -31,9 +31,9 @@ public class ConfigurationCollection {
 
 	/**
 	 * Loads configuration values from json file
-	 * @param path
-	 * @throws IOException
-	 * @throws ParseException
+	 * @param path location of configuration.json file
+	 * @throws IOException if file not found or inaccessible, or if any IO error occured during read
+	 * @throws ParseException if json file format can not be parsed
 	 */
 	public void loadFromFile(String path) throws IOException, ParseException {
 		Path filePath = Paths.get(path);
@@ -66,10 +66,10 @@ public class ConfigurationCollection {
 	}
 	
 	/**
-	 * Gets given configuration value
+	 * Gets given configuration value or null if variable not present
 	 * @param key name of configuration variable
 	 */
-	public void getValue(String key) {
-		this.configuration.getOrDefault(key, null);
+	public Object getValue(String key) {
+		return this.configuration.getOrDefault(key, null);
 	}
 }
