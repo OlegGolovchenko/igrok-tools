@@ -3,10 +3,12 @@
  */
 package org.igrok.tools.router;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Objects;
+
+import org.igrok.tools.services.ServiceCollection;
+import org.igrok.tools.services.ServiceNotFoundException;
 
 /**
  * Route representation for web server
@@ -65,14 +67,15 @@ public class Route {
 	 * 
 	 * @return
 	 * @throws RouterException
+	 * @throws ServiceNotFoundException 
 	 */
-	public RouteResult executeAction() throws RouterException {
+	public RouteResult executeAction(ServiceCollection services) throws RouterException, ServiceNotFoundException {
 		Class<?> cls = this.actionMethod.getDeclaringClass();
 		if(cls.getConstructors().length>1) {
 			throw new RouterException("Multiple constructors declared for controller.");
 		}
 		try {
-			Object controller = cls.getConstructors()[0].newInstance();
+			Object controller = ActionInspector.ConstructController(cls.getConstructors()[0], services);
 			Object result = this.actionMethod.invoke(controller);
 			if(!(result instanceof RouteResult)) {
 				throw new RouterException("Action method result must be of RouteResult type");

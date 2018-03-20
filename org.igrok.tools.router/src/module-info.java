@@ -4,5 +4,5 @@
  */
 module org.igrok.tools.router {
 	exports org.igrok.tools.router;
-	requires org.igrok.tools.services;
+	requires transitive org.igrok.tools.services;
 }
