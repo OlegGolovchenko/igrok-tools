@@ -3,7 +3,6 @@
  */
 package org.igrok.tools.configuration;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,28 +32,37 @@ public class ConfigurationCollection {
 	/**
 	 * Loads configuration values from json file
 	 * @param path location of configuration.json file
-	 * @throws IOException if file not found or inaccessible, or if any IO error occured during read
-	 * @throws ParseException if json file format can not be parsed
+	 * @throws ConfigurationException if any eror occures
 	 */
-	public void loadFromFile(String path) throws IOException, ParseException {
+	public void loadFromFile(String path) throws ConfigurationException {
 		Path filePath = Paths.get(path);
 		if (filePath == null) {
-			throw new FileNotFoundException("specified file does not exists");
+			throw new ConfigurationException("specified file does not exists");
 		}
 		if (!Files.isReadable(filePath)) {
-			throw new IOException("file is not readeable");
+			throw new ConfigurationException("file is not readeable");
 		}
-		List<String> data = Files.readAllLines(filePath);
-		String jsonString = "";
-		for (String dataLine : data) {
-			jsonString += dataLine + "\r\n";
+		try {
+			List<String> data = Files.readAllLines(filePath);
+			String jsonString = "";
+			for (String dataLine : data) {
+				jsonString += dataLine + "\r\n";
+			}
+			JSONParser parser = new JSONParser();
+			
+			try {
+				Object dataObject = parser.parse(jsonString);
+				JSONObject object = (JSONObject)dataObject;
+				object.forEach((key,value)->{
+					this.configuration.put(key, value);
+				});
+			} catch (ParseException e) {
+				throw new ConfigurationException(e.getLocalizedMessage());
+			}
+		} catch (IOException e) {
+			throw new ConfigurationException(e.getLocalizedMessage());
 		}
-		JSONParser parser = new JSONParser();
-		Object dataObject = parser.parse(jsonString);
-		JSONObject object = (JSONObject)dataObject;
-		object.forEach((key,value)->{
-			this.configuration.put(key, value);
-		});
+		
 	}
 	
 	/**

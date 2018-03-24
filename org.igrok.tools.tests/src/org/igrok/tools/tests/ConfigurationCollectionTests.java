@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.igrok.tools.configuration.ConfigurationCollection;
+import org.igrok.tools.configuration.ConfigurationException;
 import org.json.simple.parser.ParseException;
 import org.junit.Test;
 
@@ -34,21 +35,21 @@ public class ConfigurationCollectionTests {
 	}
 
 	
-	@Test(expected = IOException.class)
-	public void loadFromFileShouldThrowIOExceptionIfJsonFileNotExists() throws IOException, ParseException{
+	@Test(expected = ConfigurationException.class)
+	public void loadFromFileShouldThrowIOExceptionIfJsonFileNotExists() throws ConfigurationException{
 		ConfigurationCollection collection = new ConfigurationCollection();
 		collection.loadFromFile("config_error.json");
 	}
 	
 	
-	@Test(expected = ParseException.class)
-	public void loadFromFileShouldThrowParseExceptionIfJsonFormatError() throws IOException, ParseException{
+	@Test(expected = ConfigurationException.class)
+	public void loadFromFileShouldThrowParseExceptionIfJsonFormatError() throws ConfigurationException{
 		ConfigurationCollection collection = new ConfigurationCollection();
 		collection.loadFromFile("test_error.json");
 	}
 	
 	@Test
-	public void loadFromFileShouldSucceed() throws IOException, ParseException{
+	public void loadFromFileShouldSucceed() throws ConfigurationException{
 		ConfigurationCollection collection = new ConfigurationCollection();
 		collection.loadFromFile("test.json");
 		assertFalse(collection.isEmpty());
