@@ -3,6 +3,9 @@
  */
 package org.igrok.tools.protocols.http;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.igrok.tools.protocols.Protocol;
 
 /**
@@ -11,10 +14,12 @@ import org.igrok.tools.protocols.Protocol;
  */
 public class HttpProtocol extends Protocol {
 	
-	/**
-	 * 
-	 */
-	public HttpProtocol() {
+	private static List<String> implementedMethods = new ArrayList<String>();
+	static {
+		implementedMethods.add("GET");
 	}
 
+	public static boolean isImplemented(String method) {
+		return implementedMethods.contains(method);
+	}
 }
